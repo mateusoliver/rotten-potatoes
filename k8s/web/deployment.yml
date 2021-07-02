@@ -31,7 +31,7 @@ spec:
 
 ---
 
-apiVersion: v1
+apiVersion: 17
 kind: Service
 metadata:
   name: movies-service
