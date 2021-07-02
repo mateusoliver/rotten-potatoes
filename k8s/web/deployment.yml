@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: movies
-spec:
+spec:  
   selector:
     matchLabels:
       app: movies
@@ -10,33 +10,20 @@ spec:
     metadata:
       labels:
         app: movies
-    spec:
+    spec: 
       containers:
         - name: movies
-          image: mateusoliveira/rotten-potatoes:v1
+          image: fabricioveronez/rotten-potatoes:v1 
           ports:
-            - containerPort: 50000
-          env:
+            - containerPort: 5000
+          env: 
             - name: MONGODB_DB
               value: admin
             - name: MONGODB_HOST
               value: mongo-service
             - name: MONGODB_PORT
-              value: 27017
+              value: "27017"
             - name: MONGODB_USERNAME
               value: mongouser
             - name: MONGODB_PASSWORD
               value: mongopwd
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: movies-service
-spec:
-  selector:
-    app: movies
-  ports:
-    - port: 80
-      targetPort: 5000
-      nodePort: 3000
-    type: NodePort
